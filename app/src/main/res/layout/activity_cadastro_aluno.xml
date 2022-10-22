@@ -7,7 +7,7 @@
     tools:context=".CadastroAlunoActivity">
 
     <EditText
-        android:id="@+id/editTextTextPersonName6"
+        android:id="@+id/editTelefoneCampo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -31,7 +31,7 @@
         android:text="Telefone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName5" />
+        app:layout_constraintTop_toBottomOf="@+id/editCpfCampo" />
 
     <TextView
         android:id="@+id/editNome"
@@ -55,10 +55,10 @@
         android:text="CPF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+        app:layout_constraintTop_toBottomOf="@+id/editNomeCampo" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/editNomeCampo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -72,7 +72,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editNome" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName5"
+        android:id="@+id/editCpfCampo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -86,7 +86,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editCpf" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/botaoSalvar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"

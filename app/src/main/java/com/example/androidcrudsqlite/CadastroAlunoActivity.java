@@ -16,6 +16,7 @@ public class CadastroAlunoActivity extends AppCompatActivity implements Serializ
     private EditText cpf;
     private EditText telefone;
     private Button salvar;
+    private AlunoDAO dao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +27,7 @@ public class CadastroAlunoActivity extends AppCompatActivity implements Serializ
         cpf = findViewById(R.id.editCpfCampo);
         telefone = findViewById(R.id.editTelefoneCampo);
         salvar = findViewById(R.id.botaoSalvar);
+        dao = new AlunoDAO(this);
 
         salvar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,7 +46,8 @@ public class CadastroAlunoActivity extends AppCompatActivity implements Serializ
         aluno.setCpf(cpf.getText().toString());
         aluno.setNome(nome.getText().toString());
         aluno.setTelefone(telefone.getText().toString());
-        Toast.makeText(this, "Suscesso ao criar a classe aluno.", Toast.LENGTH_LONG).show();
+        Long id = dao.inserir(aluno);
+        Toast.makeText(this, "Aluno inserido com id: ." + id, Toast.LENGTH_LONG).show();
     }
 
 

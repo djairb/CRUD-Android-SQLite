@@ -11,8 +11,8 @@ public class Conexao extends SQLiteOpenHelper {
     private static final String name = "banco.db";
     private static final int version = 1;
 
-    public Conexao(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
-        super(context, name, factory, version);
+    public Conexao(@Nullable Context context) {
+        super(context, name, null, version);
     }
 
     @Override

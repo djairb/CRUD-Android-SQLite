@@ -8,7 +8,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class CadastroAlunoActivity extends AppCompatActivity {
+import java.io.Serializable;
+
+public class CadastroAlunoActivity extends AppCompatActivity implements Serializable {
 
     private EditText nome;
     private EditText cpf;

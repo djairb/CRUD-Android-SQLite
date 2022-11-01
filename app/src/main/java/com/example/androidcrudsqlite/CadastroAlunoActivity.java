@@ -46,8 +46,15 @@ public class CadastroAlunoActivity extends AppCompatActivity implements Serializ
         aluno.setCpf(cpf.getText().toString());
         aluno.setNome(nome.getText().toString());
         aluno.setTelefone(telefone.getText().toString());
-        Long id = dao.inserir(aluno);
-        Toast.makeText(this, "Aluno inserido com id: ." + id, Toast.LENGTH_LONG).show();
+        if(dao.existeCpf(aluno.getCpf())){
+            Toast.makeText(this, "Cpf informado já cadastrado.", Toast.LENGTH_LONG).show();
+
+        }else{
+            Long id = dao.inserir(aluno);
+            Toast.makeText(this, "Aluno inserido com id: ." + id, Toast.LENGTH_LONG).show();
+
+        }
+
     }
 
 

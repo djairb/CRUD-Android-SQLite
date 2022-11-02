@@ -15,6 +15,8 @@ public class CadastroAlunoActivity extends AppCompatActivity implements Serializ
     private EditText nome;
     private EditText cpf;
     private EditText telefone;
+    private EditText senhaRegistro;
+    private EditText confirmarSenha;
     private Button salvar;
     private AlunoDAO dao;
 
@@ -27,6 +29,8 @@ public class CadastroAlunoActivity extends AppCompatActivity implements Serializ
         cpf = findViewById(R.id.editCpfCampo);
         telefone = findViewById(R.id.editTelefoneCampo);
         salvar = findViewById(R.id.botaoSalvar);
+        senhaRegistro = findViewById(R.id.editSenhaCampo);
+        confirmarSenha = findViewById(R.id.editConfirmaSenhaCampo);
         dao = new AlunoDAO(this);
 
         salvar.setOnClickListener(new View.OnClickListener() {
@@ -46,6 +50,8 @@ public class CadastroAlunoActivity extends AppCompatActivity implements Serializ
         aluno.setCpf(cpf.getText().toString());
         aluno.setNome(nome.getText().toString());
         aluno.setTelefone(telefone.getText().toString());
+        aluno.setSenha(senhaRegistro.getText().toString());
+        ///adicionar criptografia
         if(dao.existeCpf(aluno.getCpf())){
             Toast.makeText(this, "Cpf informado já cadastrado.", Toast.LENGTH_LONG).show();
 
@@ -70,10 +76,10 @@ public class CadastroAlunoActivity extends AppCompatActivity implements Serializ
         if(validarTelefone()){
             erro = false;
         }
+        if (validarSenha()){
+            erro = false;
+        }
         return erro;
-
-
-
 
     }
 
@@ -119,6 +125,36 @@ public class CadastroAlunoActivity extends AppCompatActivity implements Serializ
             telefone.setError("Telefone não contem apenas numeros");
         }
         return erro;
+
+    }
+
+    private boolean validarSenha(){
+
+        boolean erro = false;
+
+        String senha = senhaRegistro.getText().toString();
+        String senhaConfirm = confirmarSenha.getText().toString();
+        if(senha.isEmpty() && senhaConfirm.isEmpty()){
+            erro = true;
+            senhaRegistro.setError("Campo em branco");
+            confirmarSenha.setError("Campo em branco");
+        }else if(senha.isEmpty()){
+            erro = true;
+            senhaRegistro.setError("Campo em branco");
+        }else if(senha.length() < 6){
+            erro = true;
+            senhaRegistro.setError("A senha deve conter pelo menos 6 digitos");
+        }else if(!senha.equals(senhaConfirm)){
+            erro = true;
+            senhaRegistro.setError("As senhas devem ser iguais");
+            confirmarSenha.setError("As senhas devem ser iguais");
+
+        }
+        return erro;
+
+
+
+
 
     }
 

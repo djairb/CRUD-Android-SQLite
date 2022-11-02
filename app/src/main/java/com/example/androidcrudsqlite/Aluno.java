@@ -8,6 +8,15 @@ public class Aluno {
     private String nome;
     private String cpf;
     private String telefone;
+    private String senha;
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
 
     public Integer getId() {
         return id;

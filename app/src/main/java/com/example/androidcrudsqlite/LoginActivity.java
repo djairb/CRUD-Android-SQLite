@@ -35,9 +35,10 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if(verificarLogin(cpfLogin.getText().toString(), senhaLogin.getText().toString())){
                     Toast.makeText(LoginActivity.this,"Login efetuado", Toast.LENGTH_SHORT).show();
-
+                    Intent intent = new Intent(new Intent(LoginActivity.this, ListarAlunosActivity.class));
+                    intent.putExtra("cpf",cpfLogin.getText().toString());
+                    startActivity(intent);
                 }
-
             }
         });
 
@@ -65,6 +66,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
     }
+
 
 
 }

@@ -9,7 +9,7 @@ import androidx.annotation.Nullable;
 public class Conexao extends SQLiteOpenHelper {
 
     private static final String name = "banco.db";
-    private static final int version = 1;
+    private static final int version = 2;
 
     public Conexao(@Nullable Context context) {
         super(context, name, null, version);
@@ -18,12 +18,14 @@ public class Conexao extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("create table aluno(id integer primary key autoincrement," +
-                "nome varchar(50), cpf varchar(50), telefone varchar(50), senha varchar(50))");
+                "nome varchar(50), cpf varchar(50), telefone varchar(50))");
 
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
+    public void onUpgrade(SQLiteDatabase db, int i, int i1) {
+        db.execSQL("alter table aluno add column senha varchar(50)");
+
 
     }
 }

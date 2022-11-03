@@ -36,6 +36,7 @@ public class CadastroAlunoActivity extends AppCompatActivity implements Serializ
         salvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //dao.acabarTudo();
                 if(validarCampos()){
                     montarAluno();
 
@@ -58,6 +59,7 @@ public class CadastroAlunoActivity extends AppCompatActivity implements Serializ
         }else{
             Long id = dao.inserir(aluno);
             Toast.makeText(this, "Aluno inserido com id: ." + id, Toast.LENGTH_LONG).show();
+            CadastroAlunoActivity.this.finish();
 
         }
 

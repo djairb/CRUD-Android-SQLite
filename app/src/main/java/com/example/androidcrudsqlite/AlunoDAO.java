@@ -5,6 +5,9 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class AlunoDAO {
 
     private Conexao conexao;
@@ -76,6 +79,25 @@ public class AlunoDAO {
         }
         return aluno1;
 
+
+    }
+
+    public List<Aluno> obterTodos(){
+        List<Aluno> alunosRetorno = new ArrayList<>();
+        String where = "SELECT * FROM aluno";
+        Cursor cursor = banco.rawQuery(where, null);
+
+        while (cursor.moveToNext()){
+            Aluno alunoLista = new Aluno();
+            alunoLista.setId(cursor.getInt(0));
+            alunoLista.setNome(cursor.getString(1));
+            alunoLista.setCpf(cursor.getString(2));
+            alunoLista.setTelefone(cursor.getString(3));
+            alunoLista.setSenha(cursor.getString(4));
+            alunosRetorno.add(alunoLista);
+        }
+        //add verificação pra caso ela esteja vazia
+        return alunosRetorno;
 
     }
 

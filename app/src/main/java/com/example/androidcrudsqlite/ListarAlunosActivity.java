@@ -2,15 +2,14 @@ package com.example.androidcrudsqlite;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +40,8 @@ public class ListarAlunosActivity extends AppCompatActivity {
         encherLista();
 
 
+
+
     }
 
     public void encherLista(){
@@ -57,9 +58,19 @@ public class ListarAlunosActivity extends AppCompatActivity {
         i.inflate(R.menu.menu_principal, menu);
         return true;
 
+    }
 
+    public void cadastrar(MenuItem item){
+
+        startActivity(new Intent(ListarAlunosActivity.this, CadastroAlunoActivity.class));
     }
 
 
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        alunosFiltrados.clear();
+        listaAlunos.invalidateViews();
+        encherLista();
+    }
 }

@@ -3,17 +3,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:icon="@android:drawable/ic_menu_add"
+        android:icon="@drawable/ic_action_name"
+        android:onClick="perfilUser"
         android:title="Cadastrar"
         app:showAsAction="always|withText"
-        android:onClick="cadastrar"
 
 
         />
-    <item
-        android:id="@+id/app_bar_search"
-        android:icon="@android:drawable/ic_menu_search"
-        android:title="Consulta"
-        app:actionViewClass="android.widget.SearchView"
-        app:showAsAction="always|withText" />
 </menu>

@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -17,7 +19,7 @@ import java.util.List;
 public class ListarAlunosActivity extends AppCompatActivity {
 
     private List<Aluno> alunosTodos;
-    private List<Aluno> alunosFiltrados = new ArrayList<>();
+    private List<Aluno> alunosOutros = new ArrayList<>();
     private String cpf;
     private AlunoDAO alunoDAO;
     private Aluno aluno;
@@ -39,6 +41,15 @@ public class ListarAlunosActivity extends AppCompatActivity {
         alunoNome.setText("Bem-vindo(a) ao sistema, " + aluno.getNome());
         encherLista();
 
+        listaAlunos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                Aluno alunoIr = alunosOutros.get(position);
+                irPraOutroPerfil(alunoIr.getCpf());
+
+            }
+        });
+
 
 
 
@@ -47,8 +58,17 @@ public class ListarAlunosActivity extends AppCompatActivity {
     public void encherLista(){
 
         alunosTodos = alunoDAO.obterTodos();
-        alunosFiltrados.addAll(alunosTodos);
-        ArrayAdapter<Aluno> adapter = new ArrayAdapter<Aluno>(this, android.R.layout.simple_list_item_1, alunosTodos);
+
+        for (Aluno aluno : alunosTodos){
+            String cpfOutro = aluno.getCpf();
+            if (!cpfOutro.equals(cpf)){
+                alunosOutros.add(aluno);
+                String a = "a";
+            }
+
+        }
+
+        ArrayAdapter<Aluno> adapter = new ArrayAdapter<Aluno>(this, android.R.layout.simple_list_item_1, alunosOutros);
         listaAlunos.setAdapter(adapter);
 
     };
@@ -60,17 +80,22 @@ public class ListarAlunosActivity extends AppCompatActivity {
 
     }
 
-    public void cadastrar(MenuItem item){
-
+    public void perfilUser(MenuItem item){
         startActivity(new Intent(ListarAlunosActivity.this, CadastroAlunoActivity.class));
+    }
+
+
+    public void irPraOutroPerfil(String cpf){
+
+        Intent intent = new Intent(new Intent(ListarAlunosActivity.this, PerfilUserActivity.class));
+        intent.putExtra("cpf",cpf);
+        startActivity(intent);
     }
 
 
     @Override
     protected void onResume() {
         super.onResume();
-        alunosFiltrados.clear();
-        listaAlunos.invalidateViews();
-        encherLista();
+
     }
 }

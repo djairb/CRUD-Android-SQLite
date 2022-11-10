@@ -4,64 +4,87 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PerfilUserActivity">
+    tools:context=".SeuPerfilActivity">
+
 
     <TextView
-        android:id="@+id/perfilNomeId"
+        android:id="@+id/seuPerfilNomeId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="120dp"
-        android:layout_marginEnd="100dp"
-        android:layout_marginBottom="324dp"
+        android:layout_marginStart="121dp"
+        android:layout_marginTop="113dp"
+        android:layout_marginEnd="122dp"
         android:fontFamily="sans-serif-black"
         android:text="TextView"
         android:textAlignment="center"
         android:textSize="40sp"
-        app:layout_constraintBottom_toTopOf="@+id/botaoEditarId"
+        app:layout_constraintBottom_toTopOf="@+id/seuPerfilIdid"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/perfilIdId"
+        android:id="@+id/seuPerfilIdid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="134dp"
-        android:layout_marginTop="47dp"
+        android:layout_marginTop="49dp"
         android:layout_marginEnd="134dp"
-        android:layout_marginBottom="41dp"
+        android:layout_marginBottom="34dp"
         android:text="TextView"
         android:textAlignment="center"
         android:textSize="35sp"
-        app:layout_constraintBottom_toTopOf="@+id/perfilTelefoneID"
+        app:layout_constraintBottom_toTopOf="@+id/seuPerfilTelefoneID"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/perfilNomeId" />
+        app:layout_constraintTop_toBottomOf="@+id/seuPerfilNomeId" />
 
     <TextView
-        android:id="@+id/perfilTelefoneID"
+        android:id="@+id/seuPerfilTelefoneID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="134dp"
-        android:layout_marginTop="41dp"
+        android:layout_marginTop="9dp"
         android:layout_marginEnd="134dp"
+        android:layout_marginBottom="46dp"
         android:text="TextView"
         android:textAlignment="center"
         android:textSize="35sp"
+        app:layout_constraintBottom_toTopOf="@+id/botaoEditarId"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/perfilIdId" />
+        app:layout_constraintTop_toBottomOf="@+id/seuPerfilIdid" />
 
     <Button
         android:id="@+id/botaoEditarId"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_marginBottom="167dp"
-        android:text="voltar"
+        android:layout_marginStart="136dp"
+        android:layout_marginTop="29dp"
+        android:layout_marginEnd="136dp"
+        android:text="editar"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/botaoDeletarId"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/seuPerfilTelefoneID" />
+
+    <Button
+        android:id="@+id/botaoDeletarId"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="136dp"
+        android:layout_marginEnd="136dp"
+        android:layout_marginBottom="120dp"
+        android:backgroundTint="@android:color/holo_red_light"
+        android:text="deletar"
+        android:textColor="@android:color/white"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/perfilNomeId" />
+        app:layout_constraintTop_toBottomOf="@+id/botaoEditarId" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

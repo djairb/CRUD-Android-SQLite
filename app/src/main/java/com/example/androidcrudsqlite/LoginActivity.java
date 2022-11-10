@@ -56,10 +56,12 @@ public class LoginActivity extends AppCompatActivity {
         if(!alunoDAO.existeCpf(cpf)){
             cpfLogin.setError("Cpf não consta no banco de Dados");
             prosseguir = false;
+            return prosseguir;
         }
         if(!alunoDAO.comparaSenha(cpf, senha)){
             senhaLogin.setError("Senha informada não confere com a cadastrada.");
             prosseguir = false;
+            return prosseguir;
         }
 
         return prosseguir;

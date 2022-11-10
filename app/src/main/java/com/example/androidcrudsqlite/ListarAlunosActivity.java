@@ -21,6 +21,7 @@ public class ListarAlunosActivity extends AppCompatActivity {
     private List<Aluno> alunosTodos;
     private List<Aluno> alunosOutros = new ArrayList<>();
     private String cpf;
+    private String cpfThis;
     private AlunoDAO alunoDAO;
     private Aluno aluno;
     private ListView listaAlunos;
@@ -35,9 +36,9 @@ public class ListarAlunosActivity extends AppCompatActivity {
         listaAlunos = findViewById(R.id.listaAlunosId);
         alunoNome = findViewById(R.id.nomeAlunoId);
         Bundle extras = getIntent().getExtras();
-        cpf = extras.get("cpf").toString();
+        cpfThis = extras.get("cpf").toString();
         alunoDAO = new AlunoDAO(this);
-        aluno = alunoDAO.retornaAluno(cpf);
+        aluno = alunoDAO.retornaAluno(cpfThis);
         alunoNome.setText("Bem-vindo(a) ao sistema, " + aluno.getNome());
         encherLista();
 
@@ -49,10 +50,6 @@ public class ListarAlunosActivity extends AppCompatActivity {
 
             }
         });
-
-
-
-
     }
 
     public void encherLista(){
@@ -61,22 +58,42 @@ public class ListarAlunosActivity extends AppCompatActivity {
 
         for (Aluno aluno : alunosTodos){
             String cpfOutro = aluno.getCpf();
-            if (!cpfOutro.equals(cpf)){
+            if (!cpfOutro.equals(cpfThis)){
                 alunosOutros.add(aluno);
-                String a = "a";
+
             }
-
         }
-
         ArrayAdapter<Aluno> adapter = new ArrayAdapter<Aluno>(this, android.R.layout.simple_list_item_1, alunosOutros);
         listaAlunos.setAdapter(adapter);
 
     };
 
+    @Override
     public boolean onCreateOptionsMenu(Menu menu){
         MenuInflater i = getMenuInflater();
         i.inflate(R.menu.menu_principal, menu);
         return true;
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.new_game:
+                abrirTelaEditar();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    public void abrirTelaEditar(){
+
+        Intent intent = new Intent(new Intent(ListarAlunosActivity.this, SeuPerfilActivity.class));
+        intent.putExtra("cpf",cpfThis);
+        startActivity(intent);
+
 
     }
 

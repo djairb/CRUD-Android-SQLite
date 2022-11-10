@@ -2,11 +2,9 @@ package com.example.androidcrudsqlite;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 public class PerfilUserActivity extends AppCompatActivity {
@@ -27,7 +25,7 @@ public class PerfilUserActivity extends AppCompatActivity {
         perfilNome = findViewById(R.id.perfilNomeId);
         perfilId = findViewById(R.id.perfilIdId);
         perfilTelefone = findViewById(R.id.perfilTelefoneID);
-        botaoVoltar = findViewById(R.id.botaoVoltarId);
+        botaoVoltar = findViewById(R.id.botaoEditarId);
         Bundle extras = getIntent().getExtras();
         cpf = extras.get("cpf").toString();
         setarInfo(cpf);

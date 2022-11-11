@@ -2,7 +2,9 @@ package com.example.androidcrudsqlite;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -30,6 +32,17 @@ public class SeuPerfilActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         cpf = extras.get("cpf").toString();
         setarInfo(cpf);
+
+        botaoEditar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(new Intent(SeuPerfilActivity.this, EditarPerfilActivity.class));
+                intent.putExtra("cpf",cpf);
+                startActivity(intent);
+            }
+        });
+
+
     }
 
     public void setarInfo(String cpf){
@@ -42,4 +55,6 @@ public class SeuPerfilActivity extends AppCompatActivity {
 
 
     }
+
+
 }

@@ -81,14 +81,14 @@ public class ListarAlunosActivity extends AppCompatActivity {
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.new_game:
-                abrirTelaEditar();
+                abrirTelaSeuPerfil();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
 
-    public void abrirTelaEditar(){
+    public void abrirTelaSeuPerfil(){
 
         Intent intent = new Intent(new Intent(ListarAlunosActivity.this, SeuPerfilActivity.class));
         intent.putExtra("cpf",cpfThis);

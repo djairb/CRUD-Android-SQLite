@@ -101,6 +101,15 @@ public class AlunoDAO {
 
     }
 
+    public void atualizar(Aluno aluno){
+        ContentValues values = new ContentValues();
+        values.put("nome", aluno.getNome());
+        values.put("cpf", aluno.getCpf());
+        values.put("telefone", aluno.getTelefone());
+        values.put("senha", aluno.getSenha());
+        banco.update("aluno",values, "id = ?", new String[]{String.valueOf(aluno.getId())});
+
+    }
 
 
 

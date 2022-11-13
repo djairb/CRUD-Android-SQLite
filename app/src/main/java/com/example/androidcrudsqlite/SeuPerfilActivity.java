@@ -7,12 +7,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class SeuPerfilActivity extends AppCompatActivity {
 
     private TextView seuPerfilNome;
     private TextView seuPerfilId;
     private TextView seuPerfilTelefone;
+    private TextView seuPerfilSenha;
     private Button botaoEditar;
     private Button botaoDeletar;
     private AlunoDAO alunoDAO;
@@ -27,6 +29,7 @@ public class SeuPerfilActivity extends AppCompatActivity {
         seuPerfilNome = findViewById(R.id.seuPerfilNomeId);
         seuPerfilId = findViewById(R.id.seuPerfilIdid);
         seuPerfilTelefone = findViewById(R.id.seuPerfilTelefoneID);
+        seuPerfilSenha = findViewById(R.id.seuPerfilSenhaId);
         botaoDeletar = findViewById(R.id.botaoDeletarId);
         botaoEditar = findViewById(R.id.botaoEditarId);
         Bundle extras = getIntent().getExtras();
@@ -39,16 +42,32 @@ public class SeuPerfilActivity extends AppCompatActivity {
                 Intent intent = new Intent(new Intent(SeuPerfilActivity.this, EditarPerfilActivity.class));
                 intent.putExtra("cpf",cpf);
                 startActivity(intent);
+                SeuPerfilActivity.this.finish();
             }
         });
 
 
     }
 
+    public void voltarTela(){
+        Intent intent = new Intent(SeuPerfilActivity.this, ListarAlunosActivity.class);
+        intent.putExtra("cpf",cpf);
+        startActivity(intent);
+        SeuPerfilActivity.this.finish();
+
+    }
+
+
+    @Override
+    public void onBackPressed(){
+        voltarTela();
+    }
+
     public void setarInfo(String cpf){
 
         alunoDAO = new AlunoDAO(this);
         aluno = alunoDAO.retornaAluno(cpf);
+        seuPerfilSenha.setText("Senha:\n" + aluno.getSenha());
         seuPerfilNome.setText("Nome:\n" + aluno.getNome());
         seuPerfilId.setText("Id:\n" + aluno.getId().toString()) ;
         seuPerfilTelefone.setText("Telefone:\n" + aluno.getTelefone());

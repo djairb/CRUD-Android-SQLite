@@ -93,6 +93,7 @@ public class ListarAlunosActivity extends AppCompatActivity {
         Intent intent = new Intent(new Intent(ListarAlunosActivity.this, SeuPerfilActivity.class));
         intent.putExtra("cpf",cpfThis);
         startActivity(intent);
+        ListarAlunosActivity.this.finish();
 
 
     }

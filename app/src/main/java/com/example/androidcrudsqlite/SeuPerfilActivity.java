@@ -1,7 +1,9 @@
 package com.example.androidcrudsqlite;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -34,6 +36,7 @@ public class SeuPerfilActivity extends AppCompatActivity {
         botaoEditar = findViewById(R.id.botaoEditarId);
         Bundle extras = getIntent().getExtras();
         cpf = extras.get("cpf").toString();
+        alunoDAO = new AlunoDAO(this);
         setarInfo(cpf);
 
         botaoEditar.setOnClickListener(new View.OnClickListener() {
@@ -46,7 +49,23 @@ public class SeuPerfilActivity extends AppCompatActivity {
             }
         });
 
+        botaoDeletar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+                AlertDialog dialog = new AlertDialog.Builder(SeuPerfilActivity.this)
+                        .setTitle("Atenção")
+                        .setMessage("Deseja realmente excluir seu perfil?")
+                        .setNegativeButton("Não", null)
+                        .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                deletarAluno(cpf);
+                            }
+                        })
+                        .show();
+            }
+        });
     }
 
     public void voltarTela(){
@@ -65,12 +84,26 @@ public class SeuPerfilActivity extends AppCompatActivity {
 
     public void setarInfo(String cpf){
 
-        alunoDAO = new AlunoDAO(this);
         aluno = alunoDAO.retornaAluno(cpf);
         seuPerfilSenha.setText("Senha:\n" + aluno.getSenha());
         seuPerfilNome.setText("Nome:\n" + aluno.getNome());
         seuPerfilId.setText("Id:\n" + aluno.getId().toString()) ;
         seuPerfilTelefone.setText("Telefone:\n" + aluno.getTelefone());
+
+
+    }
+
+    public void deletarAluno(String cpf){
+        alunoDAO.deletar(cpf);
+        Toast.makeText(this, "Perfil deletado.", Toast.LENGTH_SHORT).show();
+
+        Intent intent = new Intent(SeuPerfilActivity.this, LoginActivity.class);
+
+        startActivity(intent);
+        SeuPerfilActivity.this.finish();
+
+
+
 
 
     }

@@ -18,6 +18,8 @@ public class AlunoDAO {
         banco = conexao.getWritableDatabase();
 
     }
+
+    //create
     public long inserir(Aluno aluno){
         ContentValues values = new ContentValues();
         values.put("nome", aluno.getNome());
@@ -28,6 +30,7 @@ public class AlunoDAO {
 
     }
 
+    //read
     public boolean existeCpf(String cpf){
        ///Cursor cursor = banco.query("aluno", new String[]{"cpf"}, "cpf = ?", new String[]{cpf}, null, null, null);
         boolean resposta = false;
@@ -101,6 +104,7 @@ public class AlunoDAO {
 
     }
 
+    //update
     public void atualizar(Aluno aluno){
         ContentValues values = new ContentValues();
         values.put("nome", aluno.getNome());
@@ -109,6 +113,12 @@ public class AlunoDAO {
         values.put("senha", aluno.getSenha());
         banco.update("aluno",values, "id = ?", new String[]{String.valueOf(aluno.getId())});
 
+    }
+
+    //delete
+    public void deletar(String cpf){
+        Aluno aluno = retornaAluno(cpf);
+        banco.delete("aluno", "id = ?", new String[]{String.valueOf(aluno.getId())});
     }
 
 

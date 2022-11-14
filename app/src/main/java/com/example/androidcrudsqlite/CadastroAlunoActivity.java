@@ -65,7 +65,6 @@ public class CadastroAlunoActivity extends AppCompatActivity implements Serializ
 
     }
 
-
     private boolean validarCampos(){
 
         boolean erro = true;
